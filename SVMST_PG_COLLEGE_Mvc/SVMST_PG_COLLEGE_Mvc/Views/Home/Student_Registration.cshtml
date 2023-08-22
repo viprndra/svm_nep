@@ -1,0 +1,1412 @@
+﻿@model SVMST_PG_COLLEGE_Mvc.Models.Class1
+
+
+@using System.Data;
+@{
+    ViewBag.Title = "Student Registration Form";
+    Layout = null;
+}
+
+
+<html>
+<head>
+    <title>SVM Science and Technology PG College</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.11.4/build/alertify.min.js"></script>
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.11.4/build/css/alertify.min.css" />
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.11.4/build/css/themes/default.min.css" />
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.11.4/build/css/themes/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.0.3/css/bootstrap.min.css" />
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.0.3/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.13/css/bootstrap-multiselect.css" />
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.13/js/bootstrap-multiselect.js"></script>
+    <link rel="stylesheet"href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+          crossorigin="anonymous">
+
+    <!--MAIN JS FILE -->
+    <!--Alertify -->
+    <script defer src="~/Scripts/alertify.min.js"></script>
+    <link href="~/Content/alertify.min.css" rel="stylesheet" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/d3js/7.8.5/d3.min.js"></script>
+    @*<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js"  crossorigin="anonymous" referrerpolicy="no-referrer"></script>*@
+
+
+    <script type="text/javascript">
+        function AllowAlphabet(e) {
+            isIE = document.all ? 1 : 0
+            keyEntry = !isIE ? e.which : event.keyCode;
+            if (((keyEntry >= '65') && (keyEntry <= '90')) || ((keyEntry >= '97') && (keyEntry <= '122')) || (keyEntry == '46') || (keyEntry == '32') || keyEntry == '45' || keyEntry == '8')
+                return true;
+            else {
+                return false;
+            }
+        }
+    </script>
+
+    <script type="text/javascript">
+        function ee(evt) {
+            var charCode = (evt.which) ? evt.which : event.keyCode
+            if (charCode >= 48 && charCode <= 57 || charCode == 8) {
+                return true;
+            }
+            else {
+                return false;
+            }
+        }
+    </script>
+
+    <style type="text/css">
+        .rs-breadcrumbs .page-title {
+            margin: 6px 0px !important;
+        }
+
+        .header-nav {
+            padding-bottom: 10px !important;
+        }
+        select.form-control:not([size]):not([multiple]) {
+            height: calc(3.25rem + 2px);
+        }
+        .section-title-wrapper {
+            margin-bottom: 20px !important;
+        }
+
+        .btn {
+            display: inline-block;
+            margin-bottom: 0;
+            font-weight: 400;
+            text-align: center;
+            white-space: nowrap;
+            vertical-align: middle;
+            -ms-touch-action: manipulation;
+            touch-action: manipulation;
+            cursor: pointer;
+            background-image: none;
+            border: 1px solid transparent;
+            padding: 6px 12px;
+            font-size: 14px;
+            line-height: 1.42857143;
+            border-radius: 4px;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+
+        .btn-primary {
+            color: #fff;
+            background-color: #337ab7;
+            border-color: #2e6da4;
+        }
+
+        .btn-danger {
+            color: #fff;
+            background-color: #d9534f;
+            border-color: #d43f3a;
+        }
+
+        .card .img-box {
+            min-height: 130px !important;
+            max-height: 130px !important;
+            padding: 15px 0px;
+            position: relative;
+        }
+
+            .card .img-box img {
+                width: 100px !important;
+                height: 100px !important;
+            }
+
+        .button {
+            color: #fff;
+            font-size: 20px;
+            padding: 5px 20px 5px 20px;
+            text-shadow: 0px 3px 0px rgba(30, 30, 30, 0.8);
+            -webkit-border-radius: 5px;
+            -moz-border-radius: 5px;
+            border-radius: 5px;
+            background: #850b162e;
+            box-shadow: 2px 2px 5px #850B16;
+        }
+
+            .button:hover {
+                color: #fff;
+                font-size: 20px;
+                padding: 5px 20px 5px 20px;
+                background: #850b162e;
+                box-shadow: 2px 2px 5px #850B16;
+            }
+
+        .table tr td {
+            margin: 5px 0 5px 0;
+            padding: 5px;
+            border: solid 1px #850B16;
+        }
+
+        .DropDownList {
+            border: solid 1px #850B16;
+            height: 39px !important;
+        }
+
+        gridcss {
+            background: #df5015;
+            font-weight: bold;
+            color: White;
+        }
+
+        .MyCalendar .ajax__calendar_container {
+            border: 2px solid #646464;
+            background-color: whitesmoke;
+            color: red;
+            padding: 15px;
+            width: 100%;
+        }
+
+        .MyCalendar .ajax__calendar_other .ajax__calendar_day,
+        .MyCalendar .ajax__calendar_other .ajax__calendar_year {
+            color: black;
+        }
+
+        .MyCalendar .ajax__calendar_hover .ajax__calendar_day,
+        .MyCalendar .ajax__calendar_hover .ajax__calendar_month,
+        .MyCalendar .ajax__calendar_hover .ajax__calendar_year {
+            color: black;
+        }
+
+        .MyCalendar .ajax__calendar_active .ajax__calendar_day,
+        .MyCalendar .ajax__calendar_active .ajax__calendar_month,
+        .MyCalendar .ajax__calendar_active .ajax__calendar_year {
+            color: black;
+            font-weight: bold;
+        }
+
+        .rapid_contact_form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            height: auto;
+        }
+
+        .form-title {
+            margin: 50px 0px 35px 0px;
+            border-radius: 15px;
+        }
+
+            .form-title h1 {
+                font-size: 40pt;
+                font-weight: 700;
+                color: white;
+                margin: 0;
+                padding: 0;
+            }
+
+        @@media screen and (max-width: 767px) {
+            .form-title h1 {
+                text-align: center;
+                font-size: 30pt;
+            }
+        }
+
+        @@media screen and (max-width: 350px) {
+            .form-title h1 {
+                font-size: 30pt;
+            }
+        }
+
+        .form-container {
+            margin-bottom: 50px;
+            width: 75%;
+            border-radius: 20px;
+        }
+
+        @@media screen and (max-width: 1300px) {
+            .form-container {
+                width: 100%;
+            }
+        }
+
+        @@media screen and (max-width: 1000px) {
+            .form-container {
+                width: 100%;
+            }
+        }
+
+        form p:last-of-type {
+            margin-bottom: 20px;
+        }
+
+        form h3 {
+            font-size: 30pt;
+            font-weight: 400;
+            margin: 0;
+            padding: 0;
+            margin-bottom: 10px;
+        }
+
+            form h3:last-of-type {
+                margin-top: 50px;
+                margin-bottom: 10px;
+            }
+
+        form h4 {
+            font-size: 16pt;
+            margin-bottom: 20px;
+        }
+
+        form h6 {
+            font-size: 14pt;
+            font-weight: 600;
+            margin-top: 30px;
+        }
+
+        @@media screen and (max-width: 575px) {
+            form h6 {
+                margin-top: 50px;
+            }
+        }
+
+        form hr {
+            margin: 80px 0px 60px 0px;
+        }
+
+        .form-label {
+            margin-bottom: 0;
+        }
+
+        .form-control {
+            max-width: 100%;
+            box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+        }
+
+        label {
+            margin-top: 20px;
+            margin-bottom: 3px;
+        }
+
+        select {
+            cursor: pointer;
+        }
+
+        form button {
+            margin-top: 30px;
+        }
+
+        .card {
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 7%), 0 4px 6px -2px rgb(0 0 0 / 5%);
+            padding: 20px 30px;
+            /*/*margin: 40px 0px;*/
+        }
+
+            .card label {
+                text-align: left;
+            }
+
+            .card .heading {
+                background: whitesmoke !important;
+                color: black;
+                font-weight: 600;
+                font-size: 20px;
+                padding: 10px 20px;
+                border-radius: 10px;
+            }
+
+        table {
+            border: 1px solid #ccc;
+            border-collapse: collapse;
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            table-layout: fixed;
+        }
+
+            table caption {
+                font-size: 1.5em;
+                margin: .5em 0 .75em;
+            }
+
+            table tr {
+                border: 1px solid #ddd;
+                padding: .35em;
+            }
+
+            table th,
+            table td {
+                padding: .625em;
+                /*text-align: center;*/
+            }
+
+            table th {
+                font-size: .85em;
+                letter-spacing: .1em;
+                text-transform: uppercase;
+            }
+
+        @@media screen and (max-width: 600px) {
+            table {
+                border: 0;
+            }
+
+                table caption {
+                    font-size: 1.3em;
+                }
+
+                table thead {
+                    border: none;
+                    clip: rect(0 0 0 0);
+                    height: 1px;
+                    margin: -1px;
+                    overflow: hidden;
+                    padding: 0;
+                    position: absolute;
+                    width: 1px;
+                }
+
+                table tr {
+                    border-bottom: 3px solid #ddd;
+                    display: block;
+                    margin-bottom: .625em;
+                }
+
+                table td {
+                    border-bottom: 1px solid #ddd;
+                    display: block;
+                    font-size: .8em;
+                    text-align: right;
+                }
+
+
+                    table td::before {
+                        content: attr(data-label);
+                        float: left;
+                        font-weight: bold;
+                        text-transform: uppercase;
+                    }
+
+                    table td:last-child {
+                        border-bottom: 0;
+                    }
+        }
+    </style>
+
+</head>
+<body>
+    @*<form id="configform">*@
+    <div>
+        <div class="rs-breadcrumbs bg7 breadcrumbs-overlay">
+            <div class="breadcrumbs-inner">
+
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12 text-center">
+                            <img src="~/Content/Images/Logo.jpeg" alt="" style="padding: 3px; margin-top: 3px; width: 100%; height: 150px; border: 3px solid #3b6f9f;">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="container" style="margin-bottom: -8px;">
+                    <div class="row">
+                        <div class="col-md-12 text-center">
+                            <h2 style="text-align: center; background-color: #3b6f9f; color: white; padding-bottom: 6px;">
+                                <b>Registration Form </b>
+                            </h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Title Section Ends /-->
+        <section class="addmision_form">
+            <div class="rapid_contact_form" id="rapid_contact_form_rp_471152">
+                <div class="container">
+                    <div class="tsb">
+                        <div class="card">
+                            <div class="row">
+                                <div class="col-md-12 col-sm-12 col-xs-12 heading">
+                                    <span>Candidate Basic Details  </span>
+                                </div>
+
+                                <div id="div2" class="col-md-4 col-sm-4 col-xs-4">
+                                    <label id="lblCategory" for="desiredposition" class="form-label">Course Type<b style='color: red'>*</b></label>
+                                    <div>
+                                        <select name="ddl_Course_Type" id="ddl_CType" class="form-control">
+                                            <option selected="selected" value="0">----Select----</option>
+                                            <option value="1">Under Graduate</option>
+                                            <option value="2">Post Graduate</option>
+                                        </select>
+
+
+                                        @*@Html.DropDownList("ddl_CType", (List<SelectListItem>)ViewBag.CourseTypeList, new { @id = "ddl_CType", @class = "form-control", @onchange = "Bindcourse()" })*@
+
+
+                                    </div>
+                                </div>
+
+                                <div id="div1" class="col-md-4 col-sm-4 col-xs-4">
+                                    <label id="lblCourse" for="desiredposition" class="form-label">Course Name<b style='color: red'>*</b></label>
+                                    <div>
+
+                                        <select class="form-control" id="ddlCourse" name="ddlCourse" fdprocessedid="2fgczv"></select>
+
+                                        @*@Html.DropDownList("ddlCourse", (List<SelectListItem>)ViewBag.CourseList, new { @id = "ddlCourse", @class = "form-control", @onchange = "BindSemester(),BindMinorSub(),BindVocatioanl(),BindCoCurricular()" })*@
+
+                                    </div>
+                                </div>
+                              
+                                <div id="div1" class="col-md-4 col-sm-4 col-xs-4">
+                                    <label id="lblCategory" for="desiredposition" class="form-label">YEAR/SEM<b style='color: red'>*</b></label>
+                                    <div>
+
+                                        <select class="form-control" id="ddl_yearpart" name="ddl_yearpart" fdprocessedid="278h76">
+                                            @*<option value="">Please Select Semester</option>
+                    <option value="1">B.Com.IST SEM</option>*@
+                                        </select>
+
+
+                                    </div>
+                                </div>
+
+                                <div id="div2" class="col-md-4 col-sm-4 col-xs-4">
+                                    <label id="lblCategory" for="desiredposition" class="form-label">Category<b style='color: red'>*</b></label>
+                                    <div>
+                                        <select name="ddl_Category" id="ddl_Category" class="form-control">
+                                            <option selected="selected" value="0">----Select----</option>
+                                            <option value="101">GEN</option>
+                                            <option value="102">OBC</option>
+                                            <option value="103">SC</option>
+                                            <option value="104">ST</option>
+                                            <option value="105">EWS</option>
+                                            <option value="106">MINORITY</option>
+
+                                        </select>
+                                    </div>
+                                </div>
+
+
+
+                                <div class="col-md-4 col-sm-4 col-xs-4">
+                                    <label id="lblstdcategory" for="desiredposition" class="form-label">Admission Category<b style='color: red'>*</b></label>
+                                    <div>
+                                        <select name="ddl_StdCategory" id="ddl_StdCategory" class="form-control">
+                                            <option selected="selected" value="0">----Select----</option>
+                                            <option value="1">Direct Admission</option>
+                                            <option value="2">Through Teacher</option>
+
+
+                                        </select>
+                                    </div>
+                                </div>
+                                <div id="divSub1" class="col-md-4 col-sm-4 col-xs-4">
+                                    <label for="desiredposition" class="form-label">Teachers Name<b style='color: red'>*</b></label>
+
+                                    <select class="form-control" id="ddlTeachers" name="ddlTeachers" fdprocessedid="6ymov">
+                                        @*<option value="0">Select Teachers Name</option>
+                <option value="1">G1 (Dr. Ambikesh Tripathi)</option>
+                <option value="10">G2 ( Mr. Ravikant Kaushal)</option>
+                <option value="11">G2 ( Mr. Shashikant Kaushal)</option>
+                <option value="12">G2 ( Dr.Sandhya Tiwari)</option>
+                <option value="13">G2 (Mr.Abhishek Mishra)</option>*@
+                                    </select>
+
+
+                                    @*@Html.DropDownList("ddlTeachers", (List<SelectListItem>)ViewBag.TeachersList, new { @id = "ddlTeachers", @class = "form-control" })*@
+
+                                </div>
+
+
+
+
+
+                                <div id="divmajor" class="col-md-12 col-sm-12 col-xs-12">
+                                    <label for="desiredposition" class="form-label">Major Subject<b style='color: red'>*</b></label>
+                                    <table border="1"id="tbl_sub_list_1">
+                                        @*<tr>
+                                            <td colspan="2" id="pnlStudent">
+                                                <table style="width:100%">
+                                                    <tbody>
+                                                        <tr>
+                                                            <td>
+                                                                <div id="tbl_sub_list_1" class="row"></div>
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </td>
+                                        </tr>*@
+                                    </table>
+                                </div>
+                                <div id="divminor" class="col-md-6 col-sm-6 col-xs-6">
+                                    <label for="desiredposition" class="form-label">Minor Subject<b style='color: red'>*</b></label>
+                                    <select value="" name="ddl_Minor" id="ddl_Minor" class="form-control"></select>
+
+                                    @*@Html.DropDownList("ddl_Minor", (List<SelectListItem>)ViewBag.MinorsubList, new { @id = "ddl_Minor", @class = "form-control", @onclick = "MajorSubject()" })*@
+                                </div>
+                                <div id="divSub3" class="col-md-6 col-sm-6 col-xs-6">
+                                    <label for="desiredposition" class="form-label">Vocational Subject<b style='color: red'>*</b></label>
+                                    <select value="" name="ddl_Vocational" id="ddl_Vocational" class="form-control"></select>
+                                    @*@Html.DropDownList("ddl_Vocational", (List<SelectListItem>)ViewBag.vocationalList, new { @id = "ddl_Vocational", @class = "form-control" })*@
+                                </div>
+                                <div id="divSub4" class="col-md-12 col-sm-12 col-xs-12">
+                                    <label for="desiredposition" class="form-label">Co-Curricular Subject<b style='color: red'>*</b></label>
+                                    <select value="" name="ddl_CoCurricular" id="ddl_CoCurricular" class="form-control"></select>
+                                    @*@Html.DropDownList("ddl_CoCurricular", (List<SelectListItem>)ViewBag.CoCurricularList, new { @id = "ddl_CoCurricular", @class = "form-control" })*@
+                                </div>
+
+
+
+
+
+
+                                <div id="div3" class="col-md-4 col-sm-6 col-xs-12">
+                                    <label id="lblStudentName" for="desiredposition" class="form-label">Student Name</label>
+                                    <div>
+                                        <input name="txtStudentName" type="text" maxlength="30" id="txtStudentName"onchange="Convert_Hindi(this)" class="form-control" placeholder="Enter Student Name" onkeypress="javascript:return AllowAlphabet(event);" />
+                                    </div>
+                                </div>
+
+                                <div id="div4" class="col-md-4 col-sm-6 col-xs-12">
+                                    <label id="lblFatherName" for="desiredposition" class="form-label">Father /Husband Name</label>
+                                    <div id="fin-referredby">
+                                        <input name="txtFatherName" type="text" maxlength="30" id="txtFatherName" onchange="Convert_Hindi(this)"class="form-control" placeholder="Enter Father&#39;s Name" onkeypress="javascript:return AllowAlphabet(event);" />
+                                    </div>
+                                </div>
+                                <div id="div5" class="col-md-4 col-sm-6 col-xs-12">
+                                    <label id="lblMotherName" for="desiredposition" class="form-label">Mother Name</label>
+                                    <input name="txtMotherName" type="text" maxlength="30" onchange="Convert_Hindi(this)" id="txtMotherName" class="form-control" placeholder="Enter Mother&#39;s Name" onkeypress="javascript:return AllowAlphabet(event);" />
+                                </div>
+
+
+
+                                <div id="div3" class="col-md-4 col-sm-6 col-xs-12">
+                                    <label id="lblStudentNameHindi" for="desiredposition" class="form-label">Student Name In Hindi</label>
+                                    <div>
+                                        <input name="txtStudentNameHindi" type="text" maxlength="30" id="txtStudentNameHindi" class="form-control" placeholder="Enter Student Name" onkeypress="javascript:return AllowAlphabet(event);" />
+                                    </div>
+                                </div>
+
+                                <div id="div4" class="col-md-4 col-sm-6 col-xs-12">
+                                    <label id="lblFatherNameHindi" for="desiredposition" class="form-label">Father /Husband Name In Hindi</label>
+                                    <div id="fin-referredby">
+                                        <input name="txtFatherName_hindi" type="text" maxlength="30" id="txtFatherName_hindi" class="form-control" placeholder="Enter Father&#39;s Name" onkeypress="javascript:return AllowAlphabet(event);" />
+                                    </div>
+                                </div>
+                                <div id="div5" class="col-md-4 col-sm-6 col-xs-12">
+                                    <label id="lblMotherNameHindi" for="desiredposition" class="form-label">Mother Name In Hindi</label>
+                                    <input name="txtMotherNameHindi" type="text" maxlength="30" id="txtMotherName_hindi" class="form-control" placeholder="Enter Mother&#39;s Name" onkeypress="javascript:return AllowAlphabet(event);" />
+                                </div>
+
+
+
+
+                            </div>
+
+
+
+                            <div class="row">
+                                <div id="div6" class="col-md-3 col-sm-6 col-xs-12">
+                                    <label id="lddlGender" for="desiredposition" class="form-label">Gender</label>
+                                    <b>
+                                        <span lang="en-us">
+                                            <select name="ddl_Gender" id="ddl_Gender" class="form-control">
+                                                <option value="">----Select----</option>
+                                                <option value="Male">Male</option>
+                                                <option value="Female">Female</option>
+                                                <option value="Transgender">Transgender</option>
+
+                                            </select>
+                                        </span>
+                                    </b>
+                                </div>
+
+                                <div id="div7" class="col-md-3 col-sm-6 col-xs-12">
+                                    <label id="lblddlReligion" for="desiredposition" class="form-label">Religion </label>
+
+                                    <select name="ddlReligion" id="ddl_Religion" class="form-control">
+                                        <option selected="selected" value="0">----Select----</option>
+                                        <option value="Hindu">Hindu</option>
+                                        <option value="Islam">Islam</option>
+                                        <option value="Christian">Christian</option>
+                                        <option value="Sikh">Sikh</option>
+                                        <option value="Buddh">Buddh</option>
+                                        <option value="Jain">Jain</option>
+                                        <option value="Zoroast">Zoroast</option>
+
+                                    </select>
+                                </div>
+                                <div id="div8" class="col-md-3 col-sm-6 col-xs-12">
+                                    <label id="lblMobileNo" for="desiredposition" class="form-label">Mobile No</label>
+                                    <input name="txtMobileNo" type="text" maxlength="10" id="txtMobileNo" class="form-control" placeholder="Enter Mobile No." onkeypress="javascript:return  (event);" />
+                                </div>
+
+                                <div id="div9" class="col-md-3 col-sm-6 col-xs-12">
+                                    <label id="lblAadharNo" for="desiredposition" class="form-label">Aadhar No</label>
+                                    <input name="txtAadharNo" type="text" maxlength="12" id="txtAadharNo" class="form-control" placeholder="Enter Aadhar No." onkeypress="javascript:return  (event);" />
+                                </div>
+                            </div>
+
+                            <div class="row">
+
+                                <div id="div10" class="col-md-3 col-sm-6 col-xs-12">
+                                    <label id="lblemailid" for="desiredposition" class="form-label">Email ID</label>
+                                    <input name="txtEmailID" id="txtEmailID" class="form-control" type="email" placeholder="Enter Email ID" />
+                                </div>
+                                <div id="div11" class="col-md-3 col-sm-6 col-xs-12">
+                                    <label id="lblnationality" for="desiredposition" class="form-label">Nationality</label>
+                                    @*<input name="txtNationality" type="text" id="txtNationality" class="form-control" Placeholder="Nationality" />*@
+                                    <select name="txtNationality" id="ddl_Nationality" class="form-control">
+                                        <option selected="selected" value="0">----Select----</option>
+                                        <option value="Indian">Indian</option>
+                                        <option value="Other">Other</option>
+                                    </select>
+                                </div>
+                                <div id="div12" class="col-md-3 col-sm-6 col-xs-12">
+                                    <label id="lblfamilyincome" for="desiredposition" class="form-label">Family Income</label>
+                                    <input name="txtFamilyIncome" type="text" id="txtFamilyIncome" class="form-control" placeholder="Family Income" />
+
+                                </div>
+                                <div id="div13" class="col-md-3 col-sm-6 col-xs-12">
+                                    <label id="lbldob" for="desiredposition" class="form-label">Date of Birth</label>
+                                    @*<input name="txtDob" type="date" id="txtDob" class="form-control" placeholder="Select Date" max="2008-07-01" , min="1995-07-01" />*@
+                                    <input name="txtDob" type="date" id="txtDob" class="form-control" placeholder="Select Date" max="2008-07-01" , min="1995-07-01" />
+
+                                </div>
+                            </div>
+
+                            @*abc id wp no*@
+
+                            <div class="row">
+
+                                <div id="div10" class="col-md-3 col-sm-6 col-xs-12">
+                                    <label id="lblwpno" for="desiredposition" class="form-label">Whatsapp No.</label>
+                                    <input type="text" name="txtwpno" id="txtwpno" maxlength="10" class="form-control" placeholder="Enter Ehatsapp No." onkeypress="javascript:return  (event);" />
+                                </div>
+
+
+                                <div id="div12" class="col-md-3 col-sm-6 col-xs-12">
+                                    <label id="lblewsno" for="desiredposition" class="form-label">EWS No.</label>
+                                    <input name="txtewsno" type="text" id="txtewsno" class="form-control" placeholder="Enter EWS No." />
+
+                                </div>
+                                <div id="div13" class="col-md-3 col-sm-6 col-xs-12">
+                                    <label id="lblabcid" for="desiredposition" class="form-label">ABC ID</label>
+                                    <input name="txtabcid" type="text" id="txtabcid" class="form-control" placeholder="Select ABC ID" />
+
+                                </div>
+                            </div>
+
+
+
+
+                        </div>
+
+
+                        <div id="div14" class="card">
+                            <div class="row">
+                                <div id="headingPriv" class="col-md-12 col-sm-12 col-xs-12 heading">Candidate Details of Previous Year Examination</div>
+                                <div class="col-md-12 col-sm-12 col-xs-12">
+                                    <label for="desiredposition" class="form-label"></label>
+                                    <table>
+                                        <thead>
+                                            <tr></tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td data-label="EXAMINTION NAME">
+                                                    <input name="txtHSExamination" type="text" maxlength="20" id="txtHSExamination" class="form-control" placeholder="10th" />
+                                                </td>
+
+                                                <td data-label="10TH PASSING YEAR">
+
+                                                    @*<select name="txtHSYear" id="txtHSYear" class="form-control" placeholder="Passing Year" onchange="interyear()">
+                                                        </select>*@
+                                                    <input name="txtHSYear" type="text" maxlength="4" id="txtHSYear" class="form-control" placeholder="Passing Year" onkeypress="javascript:return  (event);" onchange="" />
+                                                </td>
+                                                <td data-label="10TH ROLLNO">
+                                                    <input name="txtHSRollNo" type="text" maxlength="20" id="txtHSRollNo" class="form-control" placeholder="Roll No." />
+                                                </td>
+                                                <td data-label="10TH COLLEGE NAME">
+                                                    <input name="txtHSCollege" type="text" maxlength="100" id="txtHSCollege" class="form-control" placeholder="Board / University" />
+                                                </td>
+                                                <td data-label="10TH SUBJECT NAME">
+                                                    <input name="txtHSSub" type="text" id="txtHSSub" class="form-control" placeholder="Subject Name." />
+                                                </td>
+                                                <td data-label="10TH OBTAIN MARKS">
+                                                    <input name="txtHSObtain" type="text" maxlength="4" id="txtHSObtain" class="form-control" placeholder="Obtain Marks" />
+                                                </td>
+                                                <td data-label="10TH TOTAL MARKS">
+                                                    <input name="txtHSTotalMarks" type="text" maxlength="4" id="txtHSTotalMarks" class="form-control" placeholder="Total Marks" onInput="edValueKeyPress()" onkeypress="javascript:return  (event);" />
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td data-label="EXAMINTION NAME">
+                                                    <input name="txtIMExamination12" type="text" maxlength="20" id="txtIMExamination" class="form-control" placeholder="12th" />
+
+                                                </td>
+                                                <td data-label="12TH PASSING YEAR">
+                                                    @*<select name="txtIMYear" id="txtIMYear" class="form-control" onchange="Graduationyear()">
+                                                        </select>*@
+                                                    <input name="txtIMYear" type="text" maxlength="4" id="txtIMYear" class="form-control" onkeypress="javascript:return  (event);StringCompare()" placeholder="Passing Year" onblur="CheckYear();" />
+                                                </td>
+                                                <td data-label="12TH ROLLNO">
+                                                    <input name="txtIMRollNo" type="text" maxlength="20" id="txtIMRollNo" class="form-control" placeholder="Roll No." onkeypress="javascript:return  (event);" />
+
+                                                </td>
+                                                <td data-label="12TH COLLEGE NAME">
+                                                    <input name="txtIMCollegeName" type="text" maxlength="100" id="txtIMCollegeName" class="form-control" placeholder="Board / University" />
+                                                </td>
+
+                                                <td data-label="12TH SUBJECT NAME">
+                                                    <input name="txtIMSub" type="text" id="txtIMSub" class="form-control" placeholder="Subject Name." onkeypress="javascript:return  (event);" />
+                                                </td>
+                                                <td data-label="12TH OBTAIN MARKS">
+                                                    <input name="txtIMObtained" type="text" maxlength="4" id="txtIMObtained" class="form-control" placeholder="Obtain Marks" onkeypress="javascript:return  (event);" />
+                                                </td>
+                                                <td data-label="12TH TOTAL MARKS">
+                                                    <input name="txtIMMarks" type="text" maxlength="4" id="txtIMMarks" class="form-control" placeholder="Total Marks" onkeypress="javascript:return  (event);" />
+                                                </td>
+                                            </tr>
+
+                                            <tr>
+                                                <td data-label="GRADUATION NAME">
+                                                    <input name="txtOtherExamName" type="text" maxlength="20" id="txtOtherExamName" class="form-control" placeholder="Graduation" />
+                                                </td>
+                                                <td data-label="GRADUATION PASSING YEAR">
+                                                    @*<select name="txtOtherPassYear" id="txtOtherPassYear" class="form-control" onchange="PostGraduationyear()">
+                                                        </select>*@
+                                                    <input name="txtOtherPassYear" type="text" maxlength="4" id="txtOtherPassYear" class="form-control" onkeypress="javascript:return  (event);" placeholder="Passing Year" onblur="CheckYear();" />
+                                                </td>
+                                                <td data-label="GRADUATION ROLLNO">
+                                                    <input name="txtOtherRollno" type="text" maxlength="20" id="txtOtherRollno" class="form-control" placeholder="Roll No." onkeypress="javascript:return  (event);" />
+                                                </td>
+                                                <td data-label="GRADUATION COLLEGE NAME">
+                                                    <input name="txtOtherCollegeName" type="text" maxlength="100" id="txtOtherCollegeName" class="form-control" placeholder="Board / University" />
+                                                </td>
+                                                <td data-label="GRADUATION SUBJECT NAME">
+                                                    <input name="txtGDSub" type="text" id="txtGDSub" class="form-control" placeholder="Subject Name." onkeypress="javascript:return  (event);" />
+                                                </td>
+                                                <td data-label="GRADUATION OBTAIN MARKS">
+                                                    <input name="txtOtherMarksObtain" type="text" maxlength="4" id="txtOtherMarksObtain" class="form-control" placeholder="Obtain Marks" onkeypress="javascript:return  (event);" />
+                                                </td>
+                                                <td data-label="GRADUATION TOTAL MARKS">
+                                                    <input name="txtOtherMaxMarks" type="text" maxlength="4" id="txtOtherMaxMarks" class="form-control" placeholder="Total Marks" onkeypress="javascript:return  (event);" />
+                                                </td>
+                                            </tr>
+
+
+
+                                            <tr>
+                                                <td data-label="EXAMINTION NAME">
+                                                    <input name="txtPGExamination" type="text" maxlength="20" id="txtPGExamination" class="form-control" placeholder="PG" />
+                                                </td>
+
+                                                <td data-label="PG PASSING YEAR">
+                                                    @*<select name="txtHSYear" id="txtHSYear" class="form-control" placeholder="Passing Year" onchange="interyear()">
+                                                        </select>*@
+                                                    <input name="txtHSYear" type="text" maxlength="4" id="txtPGYear" class="form-control" placeholder="Passing Year" onkeypress="javascript:return  (event);" onchange="interyear" />
+                                                </td>
+                                                <td data-label="PG ROLLNO">
+                                                    <input name="txtPGRollNo" type="text" maxlength="20" id="txtPGRollNo" class="form-control" placeholder="Roll No." onkeypress="javascript:return  (event);" />
+                                                </td>
+                                                <td data-label="PG COLLEGE NAME">
+                                                    <input name="txtPGCollege" type="text" maxlength="100" id="txtPGCollege" class="form-control" placeholder="Board / University" />
+                                                </td>
+                                                <td data-label="PG SUBJECT NAME">
+                                                    <input name="txtHSSub" type="text" id="txtPGSub" class="form-control" placeholder="Subject Name." />
+                                                </td>
+                                                <td data-label="PG OBTAIN MARKS">
+                                                    <input name="txtPGObtain" type="text" maxlength="4" id="txtPGObtain" class="form-control" placeholder="Obtain Marks" />
+                                                </td>
+                                                <td data-label="PG TOTAL MARKS">
+                                                    <input name="txtPGTotalMarks" type="text" maxlength="4" id="txtPGTotalMarks" class="form-control" placeholder="Total Marks" onInput="edValueKeyPress()" onkeypress="javascript:return  (event);" onkeyup="dis(this.value)" />
+                                                </td>
+                                            </tr>
+
+
+
+                                            <tr>
+                                                <td data-label="OTHER EXAMINTION NAME">
+                                                    <input name="txtOther1ExamName" type="text" maxlength="20" id="txtOther1ExamName" class="form-control" placeholder="Other Exam" />
+                                                </td>
+                                                <td data-label="OTHER PASSING YEAR">
+                                                    @*<select name="txtOther1PassYear" id="txtOther1PassYear" class="form-control" Placeholder="Year">
+                                                        </select>*@
+
+                                                    <input name="txtOther1PassYear" type="text" maxlength="4" id="txtOther1PassYear" class="form-control" onkeypress="javascript:return  (event);" placeholder="Passing Year" onblur="CheckYear();" />
+                                                </td>
+                                                <td data-label="OTHER ROLLNO">
+                                                    <input name="txtOther1RollNo" type="text" maxlength="20" id="txtOther1RollNo" class="form-control" placeholder="Roll No." onkeypress="javascript:return  (event);" />
+                                                </td>
+                                                <td data-label="OTHER COLLEGE NAME">
+                                                    <input name="txtOther1PassCollegeName" type="text" maxlength="100" id="txtOther1PassCollegeName" class="form-control" placeholder="Board / University" />
+                                                </td>
+                                                <td data-label="OTHER SUBJECT NAME">
+                                                    <input name="txtOTSub" type="text" id="txtOTSub" class="form-control" placeholder="Subject Name." onkeypress="javascript:return  (event);" />
+                                                </td>
+                                                <td data-label="OTHER OBTAIN MARKS">
+                                                    <input name="other1obtainmarks" type="text" maxlength="4" id="other1obtainmarks" class="form-control" placeholder="Obtain Marks" onkeypress="javascript:return  (event);" />
+                                                </td>
+                                                <td data-label="10TH TOTAL MARKS">
+                                                    <input name="txtOther1TotalMarks" type="text" maxlength="4" id="txtOther1TotalMarks" class="form-control" placeholder="Total Marks" onkeypress="javascript:return  (event);" />
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+                        <div class="card">
+                            <div class="row">
+                                <div class="col-md-12 col-sm-12 col-xs-12 heading">
+                                    <span>Candidate Name and Mailing Address of Candidate</span>
+                                </div>
+
+                                <div class="col-md-8 col-sm-6 col-xs-12">
+                                    <div class="row">
+                                        <div id="divHouse" class="col-md-6 col-sm-6 col-xs-12">
+                                            <label id="lblhouseno" for="desiredposition" class="form-label">House No.</label>
+                                            <input name="txtHouseNo" type="text" maxlength="100" id="txtHouseNo" class="form-control" placeholder="House No" style="width:100%;" />
+                                        </div>
+                                        <div id="divStreet" class="col-md-6 col-sm-6 col-xs-12">
+                                            <label id="lblStreet" for="desiredposition" class="form-label">Street/Village</label>
+                                            <input name="txtStreet" type="text" maxlength="100" id="txtStreet" class="form-control" placeholder="Street/Village" />
+                                        </div>
+                                        <div id="divPostOffice" class="col-md-6 col-sm-6 col-xs-12">
+                                            <label id="lblPostOffice" for="desiredposition" class="form-label">Post Office</label>
+                                            <input name="txtPostOffice" type="text" maxlength="100" id="txtPostOffice" class="form-control" placeholder=" Post Office" />
+                                        </div>
+                                        <div id="divState" class="col-md-6 col-sm-6 col-xs-6">
+                                            <label id="lblState" for="desiredposition" class="form-label">State :</label>
+                                            <div>
+
+                                                <select name="ddlState" id="ddlState" class="form-control"></select>
+
+                                                @*@Html.DropDownList("ddlState", (List<SelectListItem>)ViewBag.StateList, new { @id = "ddlState", @class = "form-control", @onchange = "BindDistrict()" })*@
+
+                                            </div>
+                                        </div>
+                                        @*<div id="divState" class="col-md-6 col-sm-6 col-xs-12">
+                                                <label id="lblState" for="desiredposition" class="form-label">State</label>
+                                                <select name="ddlState" id="ddlState" class="form-control">
+                                                    <option selected="selected" value="0">----Select----</option>
+                                                </select>
+
+                                            </div>*@
+                                        <div id="divState" class="col-md-6 col-sm-6 col-xs-12">
+                                            <label id="lblDistrict" for="desiredposition" class="form-label">District/City :</label>
+                                            <div>
+
+                                                <select name="ddlDistrict" id="ddlDistrict" class="form-control">
+                                                    @*<option selected="selected" value="0">----Select----</option>*@
+                                                </select>
+
+                                                @*@Html.DropDownList("ddlDistrict", (List<SelectListItem>)ViewBag.DistrictList, new { @id = "ddlDistrict", @class = "form-control" })*@
+
+
+                                            </div>
+                                        </div>
+
+                                        <div id="divPin" class="col-md-6 col-sm-6 col-xs-12">
+                                            <label id="lblPin" for="desiredposition" class="form-label">Pin Code</label>
+                                            <input name="txtPin" type="text" maxlength="6" id="txtPin" class="form-control" onkeypress="javascript:return  (event)" placeholder="Pin Code" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 col-sm-6 col-xs-12">
+                                    <div class="row">
+                                        <div id="divphoto" class="col-md-6 col-sm-6 col-xs-12 text-center">
+                                            <div class="card" style="padding: 0px; margin-top: 45px;">
+                                                <label id="lblfdArtist" for="desiredposition" class="form-label" style="margin-top: 0px; background: whitesmoke; color: black; border-bottom: 1px solid gray; padding: 5px 0px; font-size: 12px; width: 100%; font-weight: bold;">Candidate Photograph</label>
+                                                <div class="img-box">
+                                                    <img src="~/Content/Images/Blank_Person.jpg" id="photo_preview" style="height: 120px; width: 130px;" class="std-img">
+
+                                                    @*<img id="photo" src="~/Content/Images/Blank_Person.jpg" style="height: 120px; width: 130px;" />*@
+                                                </div>
+
+                                                <div class="" style="padding: 10px 5px 5px 5px; background: whitesmoke;">
+                                                    <div class="row">
+                                                        <div class="col-md-6 col-sm-6 col-xs-12 text-center">
+                                                            <input type="file" id="file_Photo" style="margin:auto;" onchange="readPhoto(this);" />
+
+                                                            @*<input type="file" name="fdArtist" id="fdArtist" onchange="showpreview(this);" style="font-size: 12px; width: 81px; margin-left: 32px;" />*@
+                                                            <input type="hidden" id="hidden_Photo_Path" />
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div id="divfdArtist1" class="col-md-6 col-sm-6 col-xs-12 text-center">
+                                            <div class="card" style="padding: 0px; margin-top: 45px;">
+                                                <label id="lblfdArtist1" for="desiredposition" class="form-label" style="margin-top: 0px; background: whitesmoke; color: black; border-bottom: 1px solid gray; padding: 5px 0px; font-size: 12px; width: 100%; font-weight: bold;">Candidate Signature</label>
+                                                <div class="img-box">
+                                                    <img src="~/Content/Images/signature.jpg" id="sign_preview" alt="Text Box:(Within the Box);" style="height:48px;width:150px;" class="sign">
+
+                                                    @*<img id="ImgCard1" src="~/Content/Images/signature.jpg" path style="height:48px;width:150px;" />*@
+                                                </div>
+
+                                                <div class="" style="padding: 10px 5px 5px 5px; background: whitesmoke;">
+                                                    <div class="row">
+                                                        <div class="col-md-6 col-sm-6 col-xs-12 text-center">
+                                                            <input type="file" id="file_Sign" style="margin:auto;" onchange="readSign(this);" />
+                                                            <input type="hidden" id="hidden_Sign_Path" />
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                       
+                        
+                        <div id="divFile" class="card">
+                            <div class="row">
+                                <div class="col-md-12 col-sm-12 col-xs-12 heading">
+                                    <span>All file upload in PDF/JPEG,JPG,PNG format</span>
+                                </div>
+
+                                <div class="col-md-12 col-sm-12 col-xs-12" style="margin-top: 20px;">
+                                    <div class="row">
+                                        <div id="divhdnHSFile" class="col-md-6 col-sm-6 col-xs-6 allow-file-preview">
+
+                                            <table>
+                                                <tr>
+                                                    <td colspan="2">
+                                                        <label id="lblhdnHSFile" for="desiredposition" class="form-label">Upload High School Documents</label>
+
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        @*<img src="~/Content/Images/Blank_Person.jpg" id="photo_preview1" style="display: none; height: 120px; width: 130px;" class="std-img">*@
+                                                       
+                                                            <!-- Button to launch a modal -->
+                                                           
+                                                            <!-- Modal -->
+                                                            <div class="modal fade"
+                                                                 id="exampleModal"
+                                                                 tabindex="-1"
+                                                                 role="dialog"
+                                                                 aria-labelledby="exampleModalLabel"
+                                                                 aria-hidden="true">
+                                                                <div class="modal-dialog" role="document">
+                                                                    <div class="modal-content">
+
+                                                                        <!-- Add image inside the body of modal -->
+                                                                        <div class="modal-body">
+                                                                            <img id="image" class="photo_preview1"
+                                                                                 src="https://media.geeksforgeeks.org/"
+                                                                                 alt="Click on button" />
+                                                                        </div>
+
+                                                                        <div class="modal-footer">
+                                                                            <button type="button"
+                                                                                    class="btn btn-secondary"
+                                                                                    data-dismiss="modal">
+                                                                                Close
+                                                                            </button>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                    <input type="file" id="HighSchool_Photo" style="margin:auto;" onchange="readPhoto1(this);" />
+                                                    <input type="hidden" id="hidden_Photo_Path1" />
+                                                </td>
+                                                    <td>
+                                                        <button type="button"
+                                                                data-toggle="modal"
+                                                                data-target="#exampleModal" style="color: white;font-weight:bold;width: 95px;background-color: #318083;" class="form-control">
+                                                            View File
+                                                        </button>
+                                                        @*<a id="linkHSFile" href="geekss">link text</a>*@
+                                                        @*<a id="highschooldownload" href="" target="_blank" style="color: white;font-weight:bold;width: 95px;background-color: #318083;" class="form-control">View File</a>*@
+                                                    </td>
+                                            </tr>
+                                        </table>
+                                    </div>
+
+
+                                    <div id="divhdnIMFile" class="col-md-6 col-sm-6 col-xs-6 allow-file-preview">
+                                        <table>
+                                            <tr>
+                                                <td colspan="2">
+                                                    <label id="lblhdnIMFile" for="validationCustom04">Upload Intermediate Documents</label>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <div class="modal fade"
+                                                         id="exampleModal2"
+                                                         tabindex="-1"
+                                                         role="dialog"
+                                                         aria-labelledby="exampleModalLabel"
+                                                         aria-hidden="true">
+                                                        <div class="modal-dialog" role="document">
+                                                            <div class="modal-content">
+
+                                                                <!-- Add image inside the body of modal -->
+                                                                <div class="modal-body">
+                                                                    <img id="image" class="photo_preview2"
+                                                                         src="https://media.geeksforgeeks.org/"
+                                                                         alt="Click on button" />
+                                                                </div>
+
+                                                                <div class="modal-footer">
+                                                                    <button type="button"
+                                                                            class="btn btn-secondary"
+                                                                            data-dismiss="modal">
+                                                                        Close
+                                                                    </button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <input type="file" id="Intermediate_Photo" style="margin:auto;" onchange="readPhoto2(this);" />
+                                                    <input type="hidden" id="hidden_Photo_Path2" />
+                                                    @*<input type="file" name="upl_IMFile" id="upl_IMFile" class="form-control" />
+        <input type="hidden" name="hdnIMFile" id="hdnIMFile" />*@
+                                                </td>
+                                                <td>
+                                                    <button type="button"
+                                                            data-toggle="modal"
+                                                            data-target="#exampleModal2" style="color: white;font-weight:bold;width: 95px;background-color: #318083;" class="form-control">
+                                                        View File
+                                                    </button>
+                                                    @*<a id="InterFile" href="" target="_blank" style="color: white;font-weight:bold;width: 95px;background-color: #318083;" class="form-control">View File</a>*@
+                                                    @*<a id="InterFile" target="_blank"><img id="img2icon" style="width: 40px;" /></a>*@
+                                                </td>
+                                            </tr>
+
+                                        </table>
+                                    </div>
+
+                                    <div id="divhdnAadharFile" class="col-md-6 col-sm-6 col-xs-6 allow-file-preview">
+                                        <table>
+                                            <tr>
+                                                <td colspan="2">
+                                                    <label id="lblhdnAadharFile" for="validationCustom04">Upload Aadhar Documents</label>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <div class="modal fade"
+                                                         id="exampleModal3"
+                                                         tabindex="-1"
+                                                         role="dialog"
+                                                         aria-labelledby="exampleModalLabel"
+                                                         aria-hidden="true">
+                                                        <div class="modal-dialog" role="document">
+                                                            <div class="modal-content">
+
+                                                                <!-- Add image inside the body of modal -->
+                                                                <div class="modal-body">
+                                                                    <img id="image" class="photo_preview3"
+                                                                         src="https://media.geeksforgeeks.org/"
+                                                                         alt="Click on button" />
+                                                                </div>
+
+                                                                <div class="modal-footer">
+                                                                    <button type="button"
+                                                                            class="btn btn-secondary"
+                                                                            data-dismiss="modal">
+                                                                        Close
+                                                                    </button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <input type="file" id="Aadhar_Photo" style="margin:auto;" onchange="readPhoto3(this);" />
+                                                    <input type="hidden" id="hidden_Photo_Path3" />
+                                                    @*<input type="file" name="upl_AadharFile" id="upl_AadharFile" class="form-control" />
+        <input type="hidden" name="hdnAadharFile" id="hdnAadharFile" />*@
+                                                </td>
+                                                <td>
+                                                    @*<a id="AadharFile" href="" target="_blank" style="color: white;font-weight:bold;width: 95px;background-color: #318083;" class="form-control">View File</a>*@
+                                                    <button type="button"
+                                                            data-toggle="modal"
+                                                            data-target="#exampleModal3" style="color: white;font-weight:bold;width: 95px;background-color: #318083;" class="form-control">
+                                                        View File
+                                                    </button>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                    <div id="divhdnTCFile" class="col-md-6 col-sm-6 col-xs-6 allow-file-preview">
+                                        <table>
+                                            <tr>
+                                                <td colspan="2">
+                                                    <label id="lblhdnTCFile" for="validationCustom04">Upload TC Documents</label>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    @*<input type="file" name="upl_TCFile" id="upl_TCFile" class="form-control" />
+        <input type="hidden" name="hdnTCFile" id="hdnTCFile" />*@
+                                                    <div class="modal fade"
+                                                         id="exampleModal4"
+                                                         tabindex="-1"
+                                                         role="dialog"
+                                                         aria-labelledby="exampleModalLabel"
+                                                         aria-hidden="true">
+                                                        <div class="modal-dialog" role="document">
+                                                            <div class="modal-content">
+
+                                                                <!-- Add image inside the body of modal -->
+                                                                <div class="modal-body">
+                                                                    <img id="image" class="photo_preview4"
+                                                                         src="https://media.geeksforgeeks.org/"
+                                                                         alt="Click on button" />
+                                                                </div>
+
+                                                                <div class="modal-footer">
+                                                                    <button type="button"
+                                                                            class="btn btn-secondary"
+                                                                            data-dismiss="modal">
+                                                                        Close
+                                                                    </button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <input type="file" id="TC_Photo" style="margin:auto;" onchange="readPhoto4(this);" />
+                                                    <input type="hidden" id="hidden_Photo_Path4" />
+                                                </td>
+                                                <td>
+                                                    @*<a id="TCFile" href="" target="_blank" style="color: white;font-weight:bold;width: 95px;background-color: #318083;" class="form-control">View File</a>*@
+                                                    <button type="button"
+                                                            data-toggle="modal"
+                                                            data-target="#exampleModal4" style="color: white;font-weight:bold;width: 95px;background-color: #318083;" class="form-control">
+                                                        View File
+                                                    </button>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                    <div id="divhdnCastFile" class="col-md-6 col-sm-6 col-xs-6 allow-file-preview">
+                                        <table>
+                                            <tr>
+                                                <td colspan="2">
+                                                    <label id="lblhdnCastFile" for="validationCustom04">Upload Cast Certificate Documents</label>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    @*<input type="file" name="upl_CastFile" id="upl_CastFile" class="form-control" />
+        <input type="hidden" name="hdnCastFile" id="hdnCastFile" />*@
+                                                    @*<input type="file" name="upl_CastFile" id="upl_CastFile" class="form-control" />
+        <input type="hidden" name="hdnCastFile" id="hdnCastFile" />*@
+                                                    <div class="modal fade"
+                                                         id="exampleModal5"
+                                                         tabindex="-1"
+                                                         role="dialog"
+                                                         aria-labelledby="exampleModalLabel"
+                                                         aria-hidden="true">
+                                                        <div class="modal-dialog" role="document">
+                                                            <div class="modal-content">
+
+                                                                <!-- Add image inside the body of modal -->
+                                                                <div class="modal-body">
+                                                                    <img id="image" class="photo_preview5"
+                                                                         src="https://media.geeksforgeeks.org/"
+                                                                         alt="Click on button" />
+                                                                </div>
+
+                                                                <div class="modal-footer">
+                                                                    <button type="button"
+                                                                            class="btn btn-secondary"
+                                                                            data-dismiss="modal">
+                                                                        Close
+                                                                    </button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <input type="file" id="Cast_Certificate_Photo" style="margin:auto;" onchange="readPhoto5(this);" />
+                                                    <input type="hidden" id="hidden_Photo_Path5" />
+                                                </td>
+                                                <td>
+                                                    <button type="button"
+                                                            data-toggle="modal"
+                                                            data-target="#exampleModal5" style="color: white;font-weight:bold;width: 95px;background-color: #318083;" class="form-control">
+                                                        View File
+                                                    </button>
+                                                    @*<a id="CastFile" href="" target="_blank" style="color: white;font-weight:bold;width: 95px;background-color: #318083;" class="form-control">View File</a>*@
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <div id="fee_view">
+
+                                                    </div>
+                                                    <label id="amount" class="amount" value=""></label>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="row">
+                            <div class="col-md-6 col-sm-6 col-xs-6 text-right">
+                                <button class="btn btn-primary" style="color:Black;color: #fff; font-size: 20px; font-weight: bold;" type="button" id="btnsubmit">Submit</button>
+                                @*<input type="submit" name="btnSubmit" value="Submit" id="btnSubmit" class="btn btn-primary" style="color:Black;color: #fff; font-size: 20px; font-weight: bold;" />*@
+                            </div>
+                            <div class="col-md-6 col-sm-6 col-xs-6 text-left">
+                                <input type="submit" class="btn btn-danger" style="color: DarkRed; width: 100px; color: #fff; font-size: 20px; font-weight: bold; " value="Reset" name="btnReset" id="btnReset">
+                                @*<input type="submit" name="btnReset" value="Reset" id="btnReset" class="btn btn-danger" style="color:DarkRed;width: 100px; color: #fff; font-size: 20px; font-weight: bold;" />*@
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+<footer class="footer" style="padding: 2px 0.812rem 2.062rem 0.812rem !important">
+    <div class="card-body">
+        <div class="d-sm-flex justify-content-center justify-content-sm-between">
+            <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">
+                COPYRIGHT © @*@DateTime.Now.Year*@ || ALL RIGHTS RESERVED || Powerd By <a class="font-15 m-0" target="_blank" href="https://wpcspl.com/" style="color:darkgreen; font-weight:bold;"> WPCSPL </a><br>
+            </span>
+            <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center text-muted"><a href="#" target="_blank" class="btn btn-primary">ADMIN LOGIN</a> <a href="#" class="btn btn-info" target="_blank">SUPER ADMIN LOGIN</a></span>
+        </div>
+    </div>
+</footer>
+@*</form>*@
+
+
+@*<script defer src="~/JS_CODE/Registration/Masterbind.js"></script>*@
+<script defer src="~/JS_CODE/Registration/StudentRegistration.js?ver=1.0"></script>
+<script defer src="~/JS_Code/Registration/Bind.js?ver=1.0"></script>
+
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.js" integrity="sha512-8Z5++K1rB3U+USaLKG6oO8uWWBhdYsM3hmdirnOEWp8h2B1aOikj5zBzlXs8QOrvY9OxEnD2QDkbSKKpfqcIWw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+<script>
+
+    function showpreview(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                $('#photo').attr('src', e.target.result);
+            }
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+
+    function showpreview1(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                $('#ImgCard1').attr('src', e.target.result);
+            }
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+
+
+
+                //function interyear() {
+                //    alert(1)
+                //    var nowY = new Date().getFullYear(),
+                //        options = "";
+                //    $('#txtIMYear').empty();
+                //    var backyearval = parseInt($("#txtHSYear").val()) + 2;
+                //    alert(backyearval);
+                //    for (var t = backyearval; t <= nowY; t++) {
+                //        options += "<option>" + t + "</option>";
+                //    }
+                //    $("#ddlSRSecYear").html(options);
+                //    $("#txtIMYear").append(options);
+                //}
+
+                //function Graduationyear() {
+                //    alert(1)
+                //    var nowY = new Date().getFullYear(),
+                //        options = "";
+                //    $('#txtOtherPassYear').empty();
+                //    var backyearval = parseInt($("#txtIMYear").val()) + 3;
+                //    alert(backyearval);
+                //    for (var t = backyearval; t <= nowY; t++) {
+                //        options += "<option>" + t + "</option>";
+                //    }
+                //    $("#txtOtherPassYear").append(options);
+                //}
+
+                //function PostGraduationyear() {
+                //    alert(1)
+                //    var nowY = new Date().getFullYear(),
+                //        options = "";
+                //    $('#txtOther1PassYear').empty();
+                //    var backyearval = parseInt($("#txtOtherPassYear").val()) + 3;
+                //    alert(backyearval);
+                //    for (var t = backyearval; t <= nowY; t++) {
+                //        options += "<option>" + t + "</option>";
+                //    }
+                //    $("#txtOther1PassYear").append(options);
+                //}
+</script>
+
+
+
+
+</body>
+</html>
+
+
+
+@*<script>
+        $("#btnsubmit").click(function () {
+            debugger;
+            var CourseType = $("#ddl_CType").val();
+            var Course = $("#ddlCourse").val();
+            var Course_ID = $("#Course_ID").val();
+            var Course_Details = $("select#ddl_yearpart option:selected").val();
+
+
+            $.ajax({
+                type: "Post",
+                url: "/Home/InsertStudentRegistration",
+                data: {
+                    "Course_Type": CourseType,
+                    "CourseName": Course,
+                    "Course_ID": Course_ID,
+                    "Next_Course_Details": Course_Details
+                },
+                dataType: "json",
+                success: function (response) {
+                    debugger;
+                    var obj = JSON.parse(response)
+                    var Session = "2022-2023"
+                    alert('Form have been Submitted.Candidate Form No: -' + obj.Table[0]['Column2'] + '' + ' Print & Submit it into College...')
+
+                    window.location = ('/NEP_Exam/NEP_Student_Print?Form_No=' + obj.Table[0]['Column2'] + "&Session=" + Session + "")
+                }
+            })
+
+
+        });
+    </script>*@

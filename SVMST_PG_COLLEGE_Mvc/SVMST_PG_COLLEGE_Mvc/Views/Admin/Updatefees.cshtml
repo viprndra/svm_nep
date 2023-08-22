@@ -1,0 +1,140 @@
+﻿@model SVMST_PG_COLLEGE_Mvc.Models.FeesDetails
+@{
+    ViewBag.Title = "Updatefees";
+    Layout = "~/Views/Shared/__Admin_login.cshtml";
+}
+
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+<script>
+    function ServerFeesdata(obj) {
+
+        var feesNumber = $("#Form_number").val();
+        if (feesNumber == null || feesNumber == undefined || feesNumber == "") {
+            alert("Please Enter Your Form Number !!")
+            $("#Form_number").focus().css("border", "1px solid red")
+            return false;
+        }
+
+        else
+     {
+            window.location.href = "/Admin/Updatefees?formNumber=" + feesNumber + "";
+        }
+    }
+</script>
+
+<script src="~/JS_CODE/Admin/Admin_Login.js"></script>
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1>Update Fees</h1>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="#" class="fa fa-home">&nbsp;Home</a></li>
+                    <li class="breadcrumb-item active">Update Fees </li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="content card-footer">
+    <div class="container-fluid">
+        <div class="row">
+
+            <div class="col-md-12">
+
+                <div class="card card-steelblue">
+                    <div class="card-header">
+                        <h3 class="card-title">Form</h3>
+                    </div>  <form action="/Admin/Updatefees" method="post">
+                        <div class="row">
+                            <div class="col-4">
+                                <div class="card-body">
+                                    <div class="input-group mb-3">
+                                        <label>Form No</label><br />
+                                        @Html.TextBoxFor(model => Model.FormNumber, new { @class = "form-control", @id = "Form_number" })
+
+                                        <div class="input-group-append">
+
+                                            <span class="input-group-text"> <i class="fas fa-user"></i></span>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>Student Name</label>
+                                        @Html.TextBoxFor(model => Model.StudentName, new { @class = "form-control", @id = "Form_number7", @readonly = "readonly" })
+
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>Course Name</label>
+                                        @Html.TextBoxFor(model => Model.CourseName, new { @class = "form-control", @id = "Form_number6", @readonly = "readonly" })
+
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>Paid Fees</label>
+                                        @Html.TextBoxFor(model => Model.PaidFees, new { @class = "form-control", @id = "Form_number5", @readonly = "readonly" })
+
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Due Fees</label>
+                                        @Html.TextBoxFor(model => Model.DueFees, new { @class = "form-control", @id = "Form_number3", @readonly = "readonly" })
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-2" style="margin-top:20px"> <input type="button" value="Search" class="btn btn-info" onclick="ServerFeesdata(this)" /></div>
+                            <div class="col-4">
+                                <div class="card-body">
+                                    <div class="form-group">
+                                        <label>Father Name</label>
+                                        @Html.TextBoxFor(model => Model.FatherName, new { @class = "form-control", @id = "Form_number2", @readonly = "readonly" })
+
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Total Fees</label>
+                                        @Html.TextBoxFor(model => Model.TotalFees, new { @class = "form-control", @id = "TotalFeestxt" })
+
+                                    </div>
+                                    <div>
+                                        <button type="button" class="btn btn-info" id="btnUpdate">Update</button>
+                                        <button type="submit" style="display:none" id="btnhdn">Update</button>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <div class="col-2"> </div>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<script>
+    $("#btnUpdate").click(function () {
+
+        if ($("#TotalFeestxt").val() == null || $("#TotalFeestxt").val() == "" || $("#TotalFeestxt").val() == undefined) {
+            alert("Please Enter Total Fees First !!");
+            $("#TotalFeestxt").focus().css("border", "1px solid red");
+            return false;
+        }
+        else {
+            $("#btnhdn").trigger("click")
+        }
+
+
+    })
+</script>
+
+

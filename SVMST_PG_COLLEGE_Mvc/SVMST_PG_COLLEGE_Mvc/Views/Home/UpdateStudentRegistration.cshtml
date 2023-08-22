@@ -1,0 +1,65 @@
+﻿
+@{
+    ViewBag.Title = "UpdateStudentRegistration";
+    Layout = "~/Views/Shared/__Admin_login.cshtml";
+}
+
+<h2>UpdateStudentRegistration</h2>
+
+
+<section class="content card-footer">
+    @if (Session["UserType"] != null)
+    {
+        <div class="container-fluid">
+            <div class="row">
+
+                <div class="col-md-12">
+
+                    <div class="card card-steelblue">
+                        <div class="card-header">
+                            <h3 class="card-title">Form</h3>
+                        </div>  <form action="/Admin/Updatefees" method="post">
+                            <div class="row">
+                                <div class="col-4">
+                                    <div class="card-body">
+                                        <div class="input-group mb-3">
+                                            <label>Form No</label><br />
+                                            <br />
+                                            <input class="form-control" id="Form_number" name="FormNumber" type="text" value="" fdprocessedid="98hhms">
+                                            <div class="input-group-append">
+
+                                                <span class="input-group-text"> <i class="fas fa-user"></i></span>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="col-2" style="margin-top:20px"> <input type="button" value="Search" id="find_stu_dtl" class="btn btn-info" onclick="ServerFeesdata(this)" /></div>
+
+
+                            </div>
+
+                        </form>
+                    </div>
+                </div>
+
+
+            </div>
+
+        </div>
+    }
+    else
+    {
+        <script>
+            //alert("result not found");
+            window.location = "/Admin/Admin_Login";
+        </script>
+    }
+    <script defer src="~/JS_CODE/Registration/StudentRegistration.js?ver=1.0"></script>
+    <script defer src="~/JS_Code/Registration/Bind.js?ver=1.0"></script>
+</section>
+
+
+
+
+

@@ -1,0 +1,985 @@
+﻿@{
+    ViewBag.Title = "NEP_Student_Print";
+    Layout = null;
+}
+@using System.Data;
+<html>
+<head runat="server">
+
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title></title>
+
+    <!-- vendor css -->
+    <link href="assets/NewCss/css/jquery.dataTables.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="assets/NewCss/css/font-awesome.css" rel="stylesheet">
+    <link href="assets/NewCss/css/ionicons.css" rel="stylesheet">
+    <link href="assets/NewCss/css/perfect-scrollbar.css" rel="stylesheet">
+    <link href="assets/NewCss/css/select2.min.css" rel="stylesheet">
+    <link href="assets/NewCss/css/spectrum.css" rel="stylesheet">
+
+    <!-- Shamcey CSS -->
+    <link rel="stylesheet" href="assets/NewCss/css/shamcey.css">
+    <style>
+        * {
+            text-transform: uppercase;
+        }
+
+        .bdr {
+            border-top: 1px solid;
+            border-left: 1px solid;
+            border-right: 1px solid;
+        }
+
+        .bdr-LR {
+            border-left: 1px solid;
+            border-right: 1px solid;
+        }
+
+        .headertext {
+            font-size: 16px;
+            font-weight: 600;
+            color: #fdf3e5;
+            letter-spacing: 2px;
+            line-height: 20px;
+        }
+
+        td, th {
+            padding: 5px 0px 5px 8px;
+            border: 1px solid;
+            font-size: 14px;
+            color: black;
+        }
+
+        .no-border {
+            border: none;
+        }
+
+        .bdr-rt-btm {
+            border: none;
+            border-right: 1px solid black;
+            border-bottom: 1px solid black;
+        }
+
+        .bdr-right {
+            border: none;
+            border-right: 1px solid black;
+        }
+
+        .bdr-top {
+            border-top: 1px solid black;
+        }
+
+        .bdr-rt-btm {
+            border-bottom: 1px solid black;
+            border-right: 1px solid black;
+        }
+
+
+
+        #div1 {
+            margin-top: -10px;
+        }
+
+        .prnt-logo-bg {
+            background: #081a87 !important;
+        }
+
+        .headertext {
+            font-size: 16px !important;
+            font-weight: 600 !important;
+            color: #fdf3e5 !important;
+            letter-spacing: 2px !important;
+            line-height: 20px;
+        }
+    </style>
+</head>
+<body>
+    @if (TempData["TotalStudents1"] != null)
+    {
+        <form id="form1" />
+
+        <div class="container-fluid" style="border: 2px solid black;  width: 1030px; ">
+            <center><b>For Student Copy</b></center>
+
+
+            <div class="sh-mainpanel" style="width: 100%" id="div1">
+                <div class="sh-pagebody" style="width: 1000px; margin-top: 20px;">
+                    @{DataSet ds = (DataSet)TempData["TotalStudents1"];
+                        if (ds.Tables.Count == 0)
+                        {
+                            <script>
+                                alert("RESULT NOT FOUND !!");
+                                window.location = "/Home/Student_Registration";
+                            </script>
+                        }
+                        else
+                        {
+
+                            <table style="background:#ffffffba;">
+                                @for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
+                                {
+                                    <tbody>
+
+                                        <tr>
+
+                                            <td class="prnt-logo-bg bdr" colspan="7">
+                                                <img src="~/Content/Images/Logo.jpeg" width="100%" />
+
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="prnt-logo-bg bdr-LR" colspan="5" style="background:#ffffffba;">
+                                                <center>  <span id="header" class="headertext">अभ्यर्थी पंजीकरण फार्म वर्ष – @ViewBag.test</span></center>
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+
+
+                                            <td><b>FORM NO.</b></td>
+                                            <td>@ds.Tables[0].Rows[i]["Form_No"] </td>
+
+
+                                            <td><b>COURSE APPLIED</b></td>
+                                            <td> @ds.Tables[0].Rows[i]["Year_Part"] </td>
+
+                                            <td rowspan="5" width="19%" style="padding: 0px;">
+                                                <table width="100%">
+                                                    <tbody>
+
+                                                        <tr>
+
+
+                                                            <td> <img src="@ds.Tables[0].Rows[i]["Student_Photo"]" id="Photo" style="height:120px;width:120px;" /> </td>
+
+
+
+
+
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="no-border">
+                                                                <center>
+                                                                    <Image src="@ds.Tables[0].Rows[i]["Student_Signature"]" ID="ImgSignature" runat="server" style="width:120px;height:40px" />
+                                                                </center>
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </td>
+
+                                        </tr>
+                                        <tr>
+
+                                            <td><b>STUDENT NAME</b></td>
+                                            <td> @ds.Tables[0].Rows[i]["Student_Name_English"] </td>
+
+                                            <td>
+                                                <b>GENDER :</b>
+                                                @ds.Tables[0].Rows[i]["Gender"]
+                                            </td>
+
+                                            <td>
+                                                <b>STUDENT TYPE :</b>
+                                                @ds.Tables[0].Rows[i]["Student_Type"]
+                                            </td>
+
+
+                                        </tr>
+
+                                        <tr>
+
+                                            <td><b>FATHER'S / HUSBAND NAME</b></td>
+                                            <td> @ds.Tables[0].Rows[i]["Father_Name_English"] </td>
+
+                                            <td>
+                                                <b>MOTHER'S NAME :</b>
+                                            </td>
+                                            <td>
+                                                @ds.Tables[0].Rows[i]["Mother_Name_English"]
+                                            </td>
+
+
+
+
+                                        </tr>
+
+                                        <tr>
+
+                                            <td><b>NAME OF COLLEGE</b></td>
+                                            @*<td colspan="3"> @ds.Tables[0].Rows[i]["College_Name"] </td>*@
+                                            <td colspan="3"><b> SVM Science AND TECHNOLOGY PG COLLEGE </b> </td>
+
+
+
+                                        </tr>
+                                        <tr>
+
+                                            <td><b>AADHAR</b></td>
+
+
+                                            <td> @ds.Tables[0].Rows[i]["Aadhar"] </td>
+
+                                            <td><b>Email ID</b></td>
+
+                                            <td> @ds.Tables[0].Rows[i]["EmailID"] </td>
+
+                                        </tr>
+                                        <tr>
+
+                                            <td><b>D.O.B</b></td>
+                                            <td> @ds.Tables[0].Rows[i]["DOB"] </td>
+                                            <td>
+                                                <b>CATEGORY :</b>
+                                                @ds.Tables[0].Rows[i]["CATEGORY"]
+                                            </td>
+
+                                            <td><b>RELIGION </b></td>
+
+                                            <td>
+                                                @ds.Tables[0].Rows[i]["Religion"]
+                                            </td>
+
+                                        </tr>
+                                        <tr>
+
+                                            <td><b>MOBILE NO.</b></td>
+                                            <td> @ds.Tables[0].Rows[i]["MobileNo"]</td>
+                                            <td><b>Student CATEGORY </b></td>
+                                            <td> @ds.Tables[0].Rows[i]["SubCategory"]</td>
+
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+
+                                            <td><b>NATIONALITY</b></td>
+                                            <td>@ds.Tables[0].Rows[i]["Caste"]</td>
+                                            <td>
+                                                <b>ENROLLMENT NO.</b> @ds.Tables[0].Rows[i]["EnrollmentNo"]
+                                            </td>
+                                            <td><b>ABC ID : </b> @ds.Tables[0].Rows[i]["Abc_Id"] </td>
+
+                                            <td> <b> EWS NO: </b>   @ds.Tables[0].Rows[i]["EWS_No"] </td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="5"><b>SUBJECT/PAPER OPTED</b></td>
+                                        </tr>
+
+                                        <tr>
+                                            <td colspan="6">
+                                                <table style="width:100%">
+                                                    <tr style="font-weight:bold">
+                                                        <td>SN.NO</td>
+                                                        <td>Subject Name</td>
+                                                        <td>Paper Type</td>
+                                                        @*<td>PapersName</td>*@
+                                                        @{
+                                                            int h = 1;
+                                                            string ID = "";
+                                                            string str = "";
+                                                            for (int j = 0; j < ds.Tables[1].Rows.Count; j++)
+                                                            {
+
+                                                                var SubjectName = ds.Tables[1].Rows[j]["SubjectName"].ToString();
+
+                                                                if (SubjectName == str)
+                                                                {
+                                                                    str = SubjectName;
+                                                                    SubjectName = "";
+                                                                    ID = "";
+                                                                }
+                                                                else
+                                                                {
+                                                                    str = SubjectName;
+
+                                                                    ID = h.ToString();
+                                                                    h += 1;
+
+                                                                }
+
+                                                            <tr style="font-weight:bold">
+
+                                                                <td>@ID</td>
+
+                                                                <td>@SubjectName</td>
+                                                                <td>
+                                                                    @ds.Tables[1].Rows[j]["P_Type"]
+                                                                </td>
+                                                                @*<td> @ds.Tables[1].Rows[j]["SubjectName"]</td>*@
+                                                            </tr>
+
+
+                                                        }
+                                                        }
+                                                    </table>
+                                                </td>
+                                            </tr>
+
+
+
+                                            <tr>
+                                                <td colspan="5"><b>DETAILS OF PREVIOUS YEAR EXAMINATION</b></td>
+                                            </tr>
+                                            <tr id="PreviousDetails" runat="server" visible="false">
+                                                <td colspan="5" style="padding: 0px;">
+                                                    <table width="100%">
+                                                        <tbody>
+                                                            <tr id="trPrev" runat="server">
+
+                                                                <td class="bdr-rt-btm"><b>EXAMINATION NAME</b></td>
+                                                                <td class="bdr-rt-btm"><b>YEAR</b></td>
+                                                                <td class="bdr-rt-btm"><b>ROLL NUMBER</b></td>
+                                                                <td class="bdr-rt-btm"><b>COLLEGE/UNIVERSITY</b></td>
+                                                                <td class="bdr-rt-btm"><b>OBTAINED MARKS</b></td>
+                                                                <td class="bdr-rt-btm"><b>MAX MARKS</b></td>
+                                                            </tr>
+                                                            <tr style="display: none;">
+                                                                <td>
+                                                                    <table ID="grdPreExaminations" runat="server" AutoGenerateColumns="False"
+                                                                           Width="100%" Visible="False">
+                                                                        <tr>
+                                                                            <th HeaderText="Name of Examination" DataField="ExamName">
+                                                                                <HeaderStyle HorizontalAlign="Left" />
+                                                                                <ItemStyle HorizontalAlign="Left" />
+                                                                            </th>
+                                                                            <th HeaderText="Board/University" DataField="BoardName">
+                                                                                <HeaderStyle HorizontalAlign="Left" />
+                                                                                <ItemStyle HorizontalAlign="Left" />
+                                                                            </th>
+                                                                            <th HeaderText="Year" DataField="PassingYear">
+                                                                                <HeaderStyle HorizontalAlign="Left" />
+                                                                                <ItemStyle HorizontalAlign="Left" />
+                                                                            </th>
+                                                                            <th HeaderText="Institute/College" DataField="CollegeName">
+                                                                                <HeaderStyle HorizontalAlign="Left" />
+                                                                                <ItemStyle HorizontalAlign="Left" />
+                                                                            </th>
+                                                                            <th HeaderText="Marks">
+                                                                                <ItemTemplate>
+                                                                                    <Label ID="lblObtMarks" runat="server" Text='<%#Eval("ObtMarks", "{0:0}")%>'></Label>
+                                                                                    /<Label ID="lblMaxMarks" runat="server" Text='<%#Eval("MaxMarks", "{0:0}")%>'></Label>
+                                                                                </ItemTemplate>
+                                                                            </th>
+                                                                            <th HeaderText="Percentage" DataField="Percenatge" DataFormatString="{0:0.00}">
+                                                                                <HeaderStyle HorizontalAlign="Left" />
+                                                                                <ItemStyle HorizontalAlign="Left" />
+                                                                            </th>
+                                                                        </tr>
+                                                                    </table>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="bdr-right"> @ds.Tables[0].Rows[i]["ExamName_10th"]</td>
+
+                                                                <td class="bdr-right">
+                                                                    @ds.Tables[0].Rows[i]["PassingYear_10th"]
+                                                                </td>
+                                                                <td class="bdr-right">@ds.Tables[0].Rows[i]["RollNo_10th"]</td>
+                                                                <td class="bdr-right">
+                                                                    @ds.Tables[0].Rows[i]["Board_10th"]
+                                                                </td>
+                                                                <td class="bdr-right">
+                                                                    @ds.Tables[0].Rows[i]["ObtMarks_10th"]
+                                                                </td>
+                                                                <td class="bdr-right">
+                                                                    @ds.Tables[0].Rows[i]["MaxMarks_10th"]
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="bdr-right">
+                                                                    <Label ID="lblPreExamName" runat="server"></Label>
+                                                                </td>
+                                                                <td class="bdr-right">
+                                                                    <Label ID="lblYear" runat="server"></Label>
+                                                                </td>
+                                                                <td class="bdr-right">
+                                                                    <Label ID="lblHSRoll" runat="server" Visible="false"></Label>
+                                                                    <Label ID="lblRollNo" runat="server"></Label>
+                                                                </td>
+                                                                <td class="bdr-right">
+                                                                    <Label ID="lblPreBoard" runat="server"></Label>
+                                                                </td>
+                                                                <td class="bdr-right">
+                                                                    <Label ID="lbl_obtmm" runat="server"></Label>
+                                                                </td>
+                                                                <td class="bdr-right">
+                                                                    <Label ID="lblMaxMarks" runat="server"></Label>
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </td>
+                                            </tr>
+                                            @*<tr>
+                                                    <td rowspan="5" style="padding: 0px;">
+                                                        <table width="100%">
+                                                            <tbody>
+                                                                <tr>
+                                                                    <td class="no-border">
+
+                                                                        <center><img src="~/Content/Print_Page_Img/Blank_Person.jpg" style="width:150px;height:150px;" /></center>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="no-border">
+
+                                                                        <center><img src="~/Content/Print_Page_Img/signature.jpg" style="width:150px;height:40px" /></center>
+                                                                    </td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </td>
+                                                </tr>*@
+                                            <tr>
+
+                                                <td colspan="6"><b>PERMANENT ADDRESS:</b> @ds.Tables[0].Rows[i]["Student_Address"] , <b>District -</b> @ds.Tables[0].Rows[i]["DistrictCity"],<b>PinCode -</b>@ds.Tables[0].Rows[i]["PinCode"] </td>
+                                                @*<td> @ds.Tables[0].Rows[i]["DistrictCity"]</td>*@
+
+
+
+
+                                            </tr>
+
+
+                                            <!--<tr>
+
+                                                <td colspan="6">
+                                                    <b>MAILING ADDRESS:</b> @ds.Tables[0].Rows[i]["Student_Address"], <b>PinCode</b> @ds.Tables[0].Rows[i]["DistrictCity"],@ds.Tables[0].Rows[i]["PinCode"]
+                                                </td>-->
+
+                                                @*<td> @ds.Tables[0].Rows[i]["DistrictCity"]</td>*@
+
+                                            <!--</tr>-->
+
+                                            <tr>
+                                                @*<td colspan="5">
+                                                        <div id="student" runat="server" class="col-md-12" style="font-size: 15px;"></div>
+                                                        <br />
+                                                        <br />
+                                                        <div class="col-md-12" style="margin-top: 15px;" id="date" runat="server">
+
+                                                        </div>
+                                                        <div class="col-md-12 prnt-sgn" style="">
+                                                            (SIGNATURE OF THE CANDIDATE)
+                                                        </div>
+                                                    </td>*@
+                                                <td colspan="5">
+
+                                                    <div id="student" runat="server" class="col-md-12" style="font-size: 15px;"></div>
+                                                    <b style='font-size:15px;'>
+                                                        <b style='font-size:15px;'>DECLARATION BY THE CANDIDATE:-</b>  solemnly declare that all the information provided in the <b style='font-size:15px;'> form No @ds.Tables[0].Rows[i]["Form_No"]  </b> is true to the best of my knowledge and belief. if any infromation is found to be incorrect, my candidature can be cancelled
+
+                                                        <br />
+                                                        <br />
+
+                                                        @*Convert.ToDateTime(ds.Tables[0].Rows[0]["CreateOn"].ToString()).ToLongDateString();*@
+                                                        <div class="col-md-12" style="margin-top: 15px;" id="date" runat="server">
+                                                            Date. @ds.Tables[0].Rows[i]["CreateOn"])
+                                                        </div>
+                                                        <div class="col-md-12 prnt-sgn" style="">
+                                                            (SIGNATURE OF THE CANDIDATE)
+                                                        </div>
+
+                                                </td>
+                                            </tr>
+                                            @*<tr>
+                                                    <td colspan="5" align="center">
+                                                        <b>CERTIFICATE BY THE DEAN /HOD/ PRINCIPAL</b>
+
+                                                    </td>
+                                                </tr>*@
+                                            @*<tr>
+                                                    <td colspan="5">
+
+
+                                                        <div id="tdPrincipal" runat="server" class="col-md-12" style="font-size: 15px;">
+                                                            Certified that shri/km/smt.<b style='font-size:15px;'>@ds.Tables[0].Rows[i]["Student_Name_English"] </b> is bonafied student of the college / university. all the documents of qualifying examinations mentioned in <b style='font-size:15px;'> form no.@ds.Tables[0].Rows[i]["Form_No"] </b> have been verified and found correct. the candidate is eligible for the applied examination and  duration of the course is not exceeding more than years for Said Course.
+
+                                                        </div>
+                                                        <div class="col-md-12" style="margin-top: 15px;">
+                                                            DATE
+                                                        </div>
+
+                                                         <div class="col-md-12" style="">
+                                                            <div class="col-md-6" style="margin-top: 10px; padding: 0px;">
+                                                                SIGNATURE OF OFFICE ASSISTANT
+                                                            </div>
+                                                            <div class="col-md-6 prnt-sgn" style="">
+                                                                (DEAN /HOD/ PRINCIPAL SIGNATURE WITH SEAL)
+                                                                <div id="tdcollege" runat="server">
+                                                                    @ds.Tables[0].Rows[i]["Pass_College_Name"]
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </td>
+
+                                                </tr>*@
+                                        </tbody>
+                                    }
+
+                            </table>
+                        }
+                    }
+
+
+                </div>
+            </div>
+            </div>
+
+            <br /><br /><br />
+
+
+            //-----DIV 2 --------
+
+            <div class="container-fluid" style="border: 2px solid black; margin-top: 20px; width: 1030px; ">
+                <center><b>Submit This Into College</b></center>
+
+
+                <div class="sh-mainpanel" style="width: 100%;margin-top:40px;" id="div1">
+                    <div class="sh-pagebody" style="width: 1000px; margin: auto;">
+                        @{DataSet AB = (DataSet)TempData["TotalStudents1"];
+                            if (ds.Tables.Count == 0)
+                            {
+                                <script>
+                                    alert("RESULT NOT FOUND !!");
+                                    window.location = "/Home/Student_Registration";
+                                </script>
+                            }
+                            else
+                            {
+
+                                <table style="background:#ffffffba;">
+                                    @for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
+                                    {
+                                        <tbody>
+
+                                            <tr>
+
+                                                <td class="prnt-logo-bg bdr" colspan="7">
+                                                    <img src="~/Content/Images/Logo.jpeg" width="100%" />
+
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="prnt-logo-bg bdr-LR" colspan="5" style="background:#ffffffba;">
+                                                    <center>  <span id="header" class="headertext">अभ्यर्थी पंजीकरण फार्म वर्ष – @ViewBag.test</span></center>
+                                                </td>
+                                            </tr>
+
+                                            <tr>
+
+
+                                                <td><b>FORM NO.</b></td>
+                                                <td>@ds.Tables[0].Rows[i]["Form_No"] </td>
+
+
+                                                <td><b>COURSE APPLIED</b></td>
+                                                <td> @ds.Tables[0].Rows[i]["Year_Part"] </td>
+
+                                                <td rowspan="5" width="19%" style="padding: 0px;">
+                                                    <table width="100%">
+                                                        <tbody>
+
+                                                            <tr>
+
+
+                                                                <td> 
+                                                                <img src="@ds.Tables[0].Rows[i]["Student_Photo"]" id="Photo" style="height:120px;width:120px;" />
+                                                                
+                                                                </td>
+
+
+
+
+
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="no-border">
+                                                                    <center>
+                                                                        <Image src="@ds.Tables[0].Rows[i]["Student_Signature"]" ID="ImgSignature" runat="server" style="width:120px;height:40px" />
+                                                                    </center>
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </td>
+
+                                            </tr>
+                                            <tr>
+
+                                                <td><b>STUDENT NAME</b></td>
+                                                <td> @ds.Tables[0].Rows[i]["Student_Name_English"] </td>
+
+                                                <td>
+                                                    <b>GENDER :</b>
+                                                    @ds.Tables[0].Rows[i]["Gender"]
+                                                </td>
+
+                                                <td>
+                                                    <b>STUDENT TYPE :</b>
+                                                    @ds.Tables[0].Rows[i]["Student_Type"]
+                                                </td>
+
+
+                                            </tr>
+
+                                            <tr>
+
+                                                <td><b>FATHER'S / HUSBAND NAME</b></td>
+                                                <td> @ds.Tables[0].Rows[i]["Father_Name_English"] </td>
+
+                                                <td>
+                                                    <b>MOTHER'S NAME :</b>
+                                                </td>
+                                                <td>
+                                                    @ds.Tables[0].Rows[i]["Mother_Name_English"]
+                                                </td>
+
+
+
+
+                                            </tr>
+
+                                            <tr>
+
+                                                <td><b>NAME OF COLLEGE</b></td>
+                                                @*<td colspan="3"> @ds.Tables[0].Rows[i]["College_Name"] </td>*@
+                                                <td colspan="3"><b> SVM Science AND TECHNOLOGY PG COLLEGE </b> </td>
+
+
+
+                                            </tr>
+                                            <tr>
+
+                                                <td><b>AADHAR</b></td>
+
+
+                                                <td> @ds.Tables[0].Rows[i]["Aadhar"] </td>
+
+                                                <td><b>Email ID</b></td>
+
+                                                <td> @ds.Tables[0].Rows[i]["EmailID"] </td>
+
+                                            </tr>
+                                            <tr>
+
+                                                <td><b>D.O.B</b></td>
+                                                <td> @ds.Tables[0].Rows[i]["DOB"] </td>
+                                                <td>
+                                                    <b>CATEGORY :</b>
+                                                    @ds.Tables[0].Rows[i]["CATEGORY"]
+                                                </td>
+
+                                                <td><b>RELIGION </b></td>
+
+                                                <td>
+                                                    @ds.Tables[0].Rows[i]["Religion"]
+                                                </td>
+
+                                            </tr>
+                                            <tr>
+
+                                                <td><b>MOBILE NO.</b></td>
+                                                <td> @ds.Tables[0].Rows[i]["MobileNo"]</td>
+                                                <td><b>Student CATEGORY </b></td>
+                                                <td> @ds.Tables[0].Rows[i]["SubCategory"]</td>
+
+                                                <td></td>
+                                            </tr>
+                                            <tr>
+
+                                                <td><b>NATIONALITY</b></td>
+                                                <td>INDIAN</td>
+                                                <td>
+                                                    <b>ENROLLMENT NO.</b> @ds.Tables[0].Rows[i]["EnrollmentNo"]
+                                                </td>
+                                                <td><b>ABC ID : </b> @ds.Tables[0].Rows[i]["Abc_Id"] </td>
+
+                                                <td> <b> EWS NO: </b>   @ds.Tables[0].Rows[i]["EWS_No"] </td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="5"><b>SUBJECT/PAPER OPTED</b></td>
+                                            </tr>
+
+                                            <tr>
+                                                <td colspan="6">
+                                                    <table style="width:100%">
+                                                        <tr style="font-weight:bold">
+                                                            <td>SN.NO</td>
+                                                            <td>Subject Name</td>
+                                                            <td>Paper Type</td>
+                                                            @*<td>PapersName</td>*@
+                                                            @{
+                                                                int h = 1;
+                                                                string ID = "";
+                                                                string str = "";
+                                                                for (int j = 0; j < ds.Tables[1].Rows.Count; j++)
+                                                                {
+
+                                                                    var SubjectName = ds.Tables[1].Rows[j]["SubjectName"].ToString();
+
+                                                                    if (SubjectName == str)
+                                                                    {
+                                                                        str = SubjectName;
+                                                                        SubjectName = "";
+                                                                        ID = "";
+                                                                    }
+                                                                    else
+                                                                    {
+                                                                        str = SubjectName;
+
+                                                                        ID = h.ToString();
+                                                                        h += 1;
+
+                                                                    }
+
+                                                                <tr style="font-weight:bold">
+
+                                                                    <td>@ID</td>
+
+                                                                    <td>@SubjectName</td>
+                                                                    <td>
+                                                                        @ds.Tables[1].Rows[j]["P_Type"]
+                                                                    </td>
+                                                                    @*<td> @ds.Tables[1].Rows[j]["SubjectName"]</td>*@
+                                                                </tr>
+
+
+                                                            }
+                                                            }
+                                                        </table>
+                                                    </td>
+                                                </tr>
+
+
+
+                                                <tr>
+                                                    <td colspan="5"><b>DETAILS OF PREVIOUS YEAR EXAMINATION</b></td>
+                                                </tr>
+                                                <tr id="PreviousDetails" runat="server" visible="false">
+                                                    <td colspan="5" style="padding: 0px;">
+                                                        <table width="100%">
+                                                            <tbody>
+                                                                <tr id="trPrev" runat="server">
+
+                                                                    <td class="bdr-rt-btm"><b>EXAMINATION NAME</b></td>
+                                                                    <td class="bdr-rt-btm"><b>YEAR</b></td>
+                                                                    <td class="bdr-rt-btm"><b>ROLL NUMBER</b></td>
+                                                                    <td class="bdr-rt-btm"><b>COLLEGE/UNIVERSITY</b></td>
+                                                                    <td class="bdr-rt-btm"><b>OBTAINED MARKS</b></td>
+                                                                    <td class="bdr-rt-btm"><b>MAX MARKS</b></td>
+                                                                </tr>
+                                                                <tr style="display: none;">
+                                                                    <td>
+                                                                        <table ID="grdPreExaminations" runat="server" AutoGenerateColumns="False"
+                                                                               Width="100%" Visible="False">
+                                                                            <tr>
+                                                                                <th HeaderText="Name of Examination" DataField="ExamName">
+                                                                                    <HeaderStyle HorizontalAlign="Left" />
+                                                                                    <ItemStyle HorizontalAlign="Left" />
+                                                                                </th>
+                                                                                <th HeaderText="Board/University" DataField="BoardName">
+                                                                                    <HeaderStyle HorizontalAlign="Left" />
+                                                                                    <ItemStyle HorizontalAlign="Left" />
+                                                                                </th>
+                                                                                <th HeaderText="Year" DataField="PassingYear">
+                                                                                    <HeaderStyle HorizontalAlign="Left" />
+                                                                                    <ItemStyle HorizontalAlign="Left" />
+                                                                                </th>
+                                                                                <th HeaderText="Institute/College" DataField="CollegeName">
+                                                                                    <HeaderStyle HorizontalAlign="Left" />
+                                                                                    <ItemStyle HorizontalAlign="Left" />
+                                                                                </th>
+                                                                                <th HeaderText="Marks">
+                                                                                    <ItemTemplate>
+                                                                                        <Label ID="lblObtMarks" runat="server" Text='<%#Eval("ObtMarks", "{0:0}")%>'></Label>
+                                                                                        /<Label ID="lblMaxMarks" runat="server" Text='<%#Eval("MaxMarks", "{0:0}")%>'></Label>
+                                                                                    </ItemTemplate>
+                                                                                </th>
+                                                                                <th HeaderText="Percentage" DataField="Percenatge" DataFormatString="{0:0.00}">
+                                                                                    <HeaderStyle HorizontalAlign="Left" />
+                                                                                    <ItemStyle HorizontalAlign="Left" />
+                                                                                </th>
+                                                                            </tr>
+                                                                        </table>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="bdr-right"> @ds.Tables[0].Rows[i]["ExamName_10th"]</td>
+
+                                                                    <td class="bdr-right">
+                                                                        @ds.Tables[0].Rows[i]["PassingYear_10th"]
+                                                                    </td>
+                                                                    <td class="bdr-right">@ds.Tables[0].Rows[i]["RollNo_10th"]</td>
+                                                                    <td class="bdr-right">
+                                                                        @ds.Tables[0].Rows[i]["Board_10th"]
+                                                                    </td>
+                                                                    <td class="bdr-right">
+                                                                        @ds.Tables[0].Rows[i]["ObtMarks_10th"]
+                                                                    </td>
+                                                                    <td class="bdr-right">
+                                                                        @ds.Tables[0].Rows[i]["MaxMarks_10th"]
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="bdr-right">
+                                                                        <Label ID="lblPreExamName" runat="server"></Label>
+                                                                    </td>
+                                                                    <td class="bdr-right">
+                                                                        <Label ID="lblYear" runat="server"></Label>
+                                                                    </td>
+                                                                    <td class="bdr-right">
+                                                                        <Label ID="lblHSRoll" runat="server" Visible="false"></Label>
+                                                                        <Label ID="lblRollNo" runat="server"></Label>
+                                                                    </td>
+                                                                    <td class="bdr-right">
+                                                                        <Label ID="lblPreBoard" runat="server"></Label>
+                                                                    </td>
+                                                                    <td class="bdr-right">
+                                                                        <Label ID="lbl_obtmm" runat="server"></Label>
+                                                                    </td>
+                                                                    <td class="bdr-right">
+                                                                        <Label ID="lblMaxMarks" runat="server"></Label>
+                                                                    </td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </td>
+                                                </tr>
+                                                @*<tr>
+                                                        <td rowspan="5" style="padding: 0px;">
+                                                            <table width="100%">
+                                                                <tbody>
+                                                                    <tr>
+                                                                        <td class="no-border">
+
+                                                                            <center><img src="~/Content/Print_Page_Img/Blank_Person.jpg" style="width:150px;height:150px;" /></center>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="no-border">
+
+                                                                            <center><img src="~/Content/Print_Page_Img/signature.jpg" style="width:150px;height:40px" /></center>
+                                                                        </td>
+                                                                    </tr>
+                                                                </tbody>
+                                                            </table>
+                                                        </td>
+                                                    </tr>*@
+                                                <tr>
+
+                                                    <td colspan="6"><b>PERMANENT ADDRESS:</b> @ds.Tables[0].Rows[i]["Student_Address"], @ds.Tables[0].Rows[i]["DistrictCity"],@ds.Tables[0].Rows[i]["PinCode"] </td>
+                                                    @*<td> @ds.Tables[0].Rows[i]["DistrictCity"]</td>*@
+
+
+
+
+                                                </tr>
+
+
+                                                <!--<tr>
+
+                                                    <td colspan="6">
+                                                        <b>MAILING ADDRESS:</b> @ds.Tables[0].Rows[i]["Student_Address"],@ds.Tables[0].Rows[i]["DistrictCity"],@ds.Tables[0].Rows[i]["PinCode"]
+                                                    </td>-->
+
+                                                    @*<td> @ds.Tables[0].Rows[i]["DistrictCity"]</td>*@
+
+                                                <!--</tr>-->
+
+                                                <tr>
+                                                    @*<td colspan="5">
+                                                            <div id="student" runat="server" class="col-md-12" style="font-size: 15px;"></div>
+                                                            <br />
+                                                            <br />
+                                                            <div class="col-md-12" style="margin-top: 15px;" id="date" runat="server">
+
+                                                            </div>
+                                                            <div class="col-md-12 prnt-sgn" style="">
+                                                                (SIGNATURE OF THE CANDIDATE)
+                                                            </div>
+                                                        </td>*@
+                                                    <td colspan="5">
+
+                                                        <div id="student" runat="server" class="col-md-12" style="font-size: 15px;"></div>
+                                                        <b style='font-size:15px;'>
+                                                            <b style='font-size:15px;'>DECLARATION BY THE CANDIDATE:-</b>  solemnly declare that all the information provided in the <b style='font-size:15px;'> form No @ds.Tables[0].Rows[i]["Form_No"]  </b> is true to the best of my knowledge and belief. if any infromation is found to be incorrect, my candidature can be cancelled
+
+                                                            <br />
+                                                            <br />
+
+                                                            @*Convert.ToDateTime(ds.Tables[0].Rows[0]["CreateOn"].ToString()).ToLongDateString();*@
+                                                            <div class="col-md-12" style="margin-top: 15px;" id="date" runat="server">
+                                                                Date. @ds.Tables[0].Rows[i]["CreateOn"])
+                                                            </div>
+                                                            <div class="col-md-12 prnt-sgn" style="">
+                                                                (SIGNATURE OF THE CANDIDATE)
+                                                            </div>
+
+                                                    </td>
+                                                </tr>
+                                                @*<tr>
+                                                        <td colspan="5" align="center">
+                                                            <b>CERTIFICATE BY THE DEAN /HOD/ PRINCIPAL</b>
+
+                                                        </td>
+                                                    </tr>*@
+                                                @*<tr>
+                                                        <td colspan="5">
+
+
+                                                            <div id="tdPrincipal" runat="server" class="col-md-12" style="font-size: 15px;">
+                                                                Certified that shri/km/smt.<b style='font-size:15px;'>@ds.Tables[0].Rows[i]["Student_Name_English"] </b> is bonafied student of the college / university. all the documents of qualifying examinations mentioned in <b style='font-size:15px;'> form no.@ds.Tables[0].Rows[i]["Form_No"] </b> have been verified and found correct. the candidate is eligible for the applied examination and  duration of the course is not exceeding more than years for Said Course.
+
+                                                            </div>
+                                                            <div class="col-md-12" style="margin-top: 15px;">
+                                                                DATE
+                                                            </div>
+
+                                                             <div class="col-md-12" style="">
+                                                                <div class="col-md-6" style="margin-top: 10px; padding: 0px;">
+                                                                    SIGNATURE OF OFFICE ASSISTANT
+                                                                </div>
+                                                                <div class="col-md-6 prnt-sgn" style="">
+                                                                    (DEAN /HOD/ PRINCIPAL SIGNATURE WITH SEAL)
+                                                                    <div id="tdcollege" runat="server">
+                                                                        @ds.Tables[0].Rows[i]["Pass_College_Name"]
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </td>
+
+                                                    </tr>*@
+                                            </tbody>
+                                        }
+
+                                </table>
+                            }
+                        }
+
+
+                    </div>
+                </div>
+            </div>
+            }
+
+            else
+            {
+            <script>
+                alert("RESULT NOT FOUND");
+                window.location = "/Home/Student_Registration";
+            </script>
+            }
+
+    </body>
+</html>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+
+
+
